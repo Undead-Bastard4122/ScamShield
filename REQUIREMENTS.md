@@ -176,7 +176,7 @@ A domain-only assessment must disclose that path-specific threats may not have b
 - If a provider requires the full URL, explain that requirement before transmission and let the user decline.
 - Do not persist the complete submitted URL by default.
 - Do not log raw URLs, query parameters, secrets, or API credentials.
-- Scan history must be opt-in; retention period remains a Phase 0 decision.
+- Scan history must be opt-in and off by default, with a 30-day retention baseline (D-016). Expiry, deletion, and backup-purge details remain to be approved.
 - Provide a deletion path for saved history.
 - Keep provider API keys in environment-based secret storage, never in source control.
 

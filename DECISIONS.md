@@ -129,7 +129,7 @@ This file records decisions that materially affect product scope, architecture, 
 ### D-018 — Consent interaction
 
 **Status:** Consent model approved by owner (2026-11-06): per-scan, per-provider, no remembered consent in the MVP; exact wording pending  
-**Decision:** The consent flow must show provider name and data category before a lookup. Exact wording, whether consent is per-scan or saved as a revocable setting, and handling of sensitive query parameters remain to be approved.
+**Decision:** The consent flow must show provider name and data category before a lookup. Consent is per scan and per provider, with no remembered consent in the MVP (approved). Exact wording, the data preview, and handling of sensitive URL components such as the path and query string remain to be approved.
 
 ### D-019 — Risk thresholds and freshness
 
