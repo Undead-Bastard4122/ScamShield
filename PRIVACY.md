@@ -78,7 +78,7 @@ Proposed rule for implementation planning:
 - Provide a deletion command or equivalent flow.
 - Do not store the raw full URL or query string by default.
 
-The 30-day proposal is not yet a final user-facing commitment. The retention period, exact fields, and deletion semantics must be approved before database implementation and public launch.
+History off by default, opt-in and 30-day retention are owner-approved baselines (D-016). The 30-day period is not yet a final user-facing commitment until deletion and backup semantics are written. The exact fields and deletion semantics must be approved before database implementation and public launch.
 
 ## 7. Logging
 

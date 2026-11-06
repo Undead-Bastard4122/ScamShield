@@ -46,11 +46,11 @@ Repository: https://github.com/Undead-Bastard4122/ScamShield
 - [x] Candidate provider capabilities and limitations researched.
 - [x] Commercial-use restrictions recorded where applicable.
 - [x] Provider-specific privacy concerns recorded.
-- [ ] Select the first provider or providers for the MVP.
+- [x] Select the first provider or providers for the MVP (candidates: PhishTank, URLhaus; enablement pending term checks, D-015).
 - [ ] Confirm current terms, quotas, and cost at implementation time.
 - [ ] Decide which provider data categories may be shared.
 - [ ] Approve user-facing consent wording and interaction.
-- [ ] Confirm whether consent is per scan or a revocable saved preference.
+- [x] Confirm whether consent is per scan or a revocable saved preference (per scan, per provider; D-018).
 
 ## E. Data and security design
 
@@ -58,7 +58,7 @@ Repository: https://github.com/Undead-Bastard4122/ScamShield
 - [x] External provider requests require consent as the design baseline.
 - [x] Raw URL and secret logging prohibited.
 - [x] Conceptual data entities documented.
-- [ ] Approve whether scan history is off by default.
+- [x] Approve whether scan history is off by default (off by default, opt-in; D-016).
 - [ ] Approve retention period and deletion semantics.
 - [ ] Approve final database schema, indexes, and constraints.
 - [ ] Review risk classification rules and freshness requirements.

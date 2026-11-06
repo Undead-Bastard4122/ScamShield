@@ -111,14 +111,14 @@ This file records decisions that materially affect product scope, architecture, 
 
 ### D-015 — Threat-intelligence providers
 
-**Status:** Pending evaluation  
-**Decision:** No provider is yet approved as a default production dependency.  
+**Status:** Candidates approved by owner (2026-11-06); production enablement pending  
+**Decision:** PhishTank and URLhaus are the approved first candidates to evaluate. No provider is yet approved as a production dependency. Each stays disabled until its current terms, quotas, key availability and privacy handling are re-checked, and no provider accounts, keys, or real user indicators are used without further owner approval.  
 **Reason:** API coverage, privacy impact, commercial-use rules, rate limits, cost, attribution, and retention must be evaluated. See PROVIDER_EVALUATION.md.
 
 ### D-016 — Scan-history retention
 
-**Status:** Pending user/product approval  
-**Decision:** History should be optional. A 30-day retention period is a planning proposal, not a final commitment.  
+**Status:** Baseline approved by owner (2026-11-06); deletion and backup semantics pending  
+**Decision:** History is off by default and opt-in, with a 30-day retention period and a user-accessible delete action. Live-database deletion, retention expiry, and backup purge must be specified separately before persistence work; no promise is made that deletion instantly erases backups unless the backup design guarantees it.  
 **Reason:** History is not needed for a scan and can reveal user activity.
 
 ### D-017 — Final database schema
@@ -128,13 +128,20 @@ This file records decisions that materially affect product scope, architecture, 
 
 ### D-018 — Consent interaction
 
-**Status:** Pending  
+**Status:** Consent model approved by owner (2026-11-06): per-scan, per-provider, no remembered consent in the MVP; exact wording pending  
 **Decision:** The consent flow must show provider name and data category before a lookup. Exact wording, whether consent is per-scan or saved as a revocable setting, and handling of sensitive query parameters remain to be approved.
 
 ### D-019 — Risk thresholds and freshness
 
 **Status:** Pending test evidence  
 **Decision:** High-risk thresholds and provider freshness requirements will be finalised against documented provider semantics and a labelled test dataset.
+
+### D-020 — `/report` deferred to post-MVP
+
+**Status:** Accepted (owner, 2026-11-06)  
+**Decision:** FR-14 and the user-report use case are removed from the MVP and moved to the post-MVP backlog.  
+**Reason:** THREAT_MODEL.md T-10 requires a moderation and deletion process before the feature is enabled, and none is defined. Removing it reduces storage, abuse, and personal-data risk.  
+**Consequences:** REQUIREMENTS.md updated. T-10 stays in the threat model for when the feature returns.
 
 ## Change procedure
 

@@ -47,7 +47,6 @@ An individual Telegram user who wants to check a link or domain before interacti
 3. A user views the findings, checks performed, data-sharing status, and limitations.
 4. A user views saved scan history if history is enabled.
 5. A user reads the privacy notice and requests deletion of saved history.
-6. A user reports a suspected scam for review. A report is not automatically published to an external feed.
 
 ## 5. Scope
 
@@ -77,6 +76,7 @@ An individual Telegram user who wants to check a link or domain before interacti
 - File downloading, malware execution, or sandbox detonation.
 - Port scanning, exploitation, credential collection, or offensive security features.
 - AI-generated verdicts.
+- A /report flow and any storage or moderation of user-submitted scam reports (deferred to post-MVP, see D-020).
 - Automatic publication of user reports to third-party feeds.
 - Claims that a website is safe or guaranteed legitimate.
 - A numeric probability of maliciousness without a validated and calibrated model.
@@ -132,7 +132,7 @@ The MVP must not resolve or follow a shortener. It may identify a known shorteni
 | FR-11 | Return a classification, evidence explanations, sources, timestamps, and coverage limitations. |
 | FR-12 | Provide /history only if history storage is enabled by the user. |
 | FR-13 | Provide a deletion command or equivalent flow for saved history. |
-| FR-14 | Provide a /report flow that stores a minimal user-submitted report for review, subject to abuse controls. |
+| FR-14 | *Deferred to post-MVP (D-020).* A /report flow requires a defined moderation and deletion process first. |
 | FR-15 | Apply per-user and global request limits. |
 | FR-16 | Handle malformed input, Telegram errors, provider outages, and database failures safely. |
 
