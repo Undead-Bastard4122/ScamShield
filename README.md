@@ -4,7 +4,7 @@
 
 ScamShield is a planned, privacy-first Telegram cybersecurity bot for investigating suspicious URLs and domain names. It is designed to combine local indicator analysis with carefully selected threat-intelligence sources and return an evidence-based report that explains what was checked, what was found, and what remains unknown.
 
-> **Project status: Phase 0 — planning and documentation.** Application code has not started. ScamShield is not yet a working bot and must not be relied on to assess real links.
+> **Project status: early development.** Phase 0 (planning) is largely complete and Phase 1 (the offline URL/domain input engine) is in progress. ScamShield is not yet a working bot and must not be relied on to assess real links.
 
 ## Product principles
 
@@ -61,7 +61,21 @@ Dependencies and exact runtime versions will be selected and pinned when impleme
 | Provider evaluation | Candidate review completed; provider selection pending |
 | Database schema and retention | Pending approval |
 | Phase 0 sign-off | Pending |
-| Application code | Not started |
+| Phase 1: input engine and configuration | In progress (awaiting review) |
+| Telegram bot, providers, persistence | Not started |
+
+## Development
+
+Requires Python 3.12 or newer (developed on 3.13). The input engine makes no network requests.
+
+```
+python -m venv .venv && source .venv/bin/activate
+pip install -e ".[dev]"
+ruff check . && ruff format --check .
+pytest
+```
+
+A dependency lock file is not committed yet; it will be added when dependencies are pinned (see AGENT planning notes and P-001).
 
 ## Safety notice
 
