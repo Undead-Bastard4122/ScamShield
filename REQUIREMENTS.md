@@ -210,14 +210,22 @@ The MVP is acceptable only when:
 9. Automated tests cover benign, suspicious, invalid, provider failure, and conflicting-result cases.
 10. Installation, configuration, limitations, and security boundaries are documented.
 
-## 13. Open decisions before implementation
+## 13. Decisions status before implementation
 
-- Which one or two providers will be enabled in the MVP?
-- What exact consent wording and data preview will be shown?
-- Will history be disabled by default or offered as an opt-in setting?
-- What retention period will apply to opted-in history?
-- What final database schema and deletion behaviour will be used?
-- What minimum provider evidence and freshness rules qualify for HIGH RISK?
-- Which runtime and dependency versions will be pinned?
+**Owner-approved baselines (2026-11-06):**
 
-These decisions must be resolved before the affected components are implemented.
+- PhishTank and URLhaus are the first provider candidates (D-015).
+- Scan history is off by default and opt-in, with a 30-day retention baseline (D-016).
+- Consent is per scan and per provider, with no remembered consent in the MVP (D-018).
+- `/report` is deferred to post-MVP (D-020).
+
+**Still open:**
+
+- Provider terms, key availability, permitted data scope, and enablement for each provider.
+- Exact consent wording, data preview, and query-parameter handling.
+- Live-database deletion, retention expiry, and backup-purge semantics.
+- Final database schema and its timing (see D-017).
+- Minimum provider evidence and freshness rules for HIGH RISK, and how a scan where the user declined all providers is classified (D-019).
+- Exact runtime and dependency versions to pin.
+
+Open decisions must be resolved before the components they affect are implemented.

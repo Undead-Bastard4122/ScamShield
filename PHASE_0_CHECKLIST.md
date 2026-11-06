@@ -59,7 +59,8 @@ Repository: https://github.com/Undead-Bastard4122/ScamShield
 - [x] Raw URL and secret logging prohibited.
 - [x] Conceptual data entities documented.
 - [x] Approve whether scan history is off by default (off by default, opt-in; D-016).
-- [ ] Approve retention period and deletion semantics.
+- [x] 30-day retention baseline approved (D-016).
+- [ ] Approve live-database deletion, retention expiry, and backup-purge semantics.
 - [ ] Approve final database schema, indexes, and constraints.
 - [ ] Review risk classification rules and freshness requirements.
 - [ ] Review threat model and remaining risks.

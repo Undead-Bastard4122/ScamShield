@@ -64,7 +64,7 @@ Provider consent must not be hidden inside a general acceptance of the bot's ter
 
 The default is **local-only analysis**.
 
-No external provider request should occur until the user explicitly consents to the relevant data disclosure. A stored preference may be considered later, but the user must be able to inspect, change, and revoke it. The exact consent UX is a Phase 0 approval item.
+No external provider request should occur until the user explicitly consents to the relevant data disclosure. No consent preference is remembered in the MVP: consent applies to one provider and one scan (D-018). A saved, revocable preference would need a future scope decision. The exact consent wording is still pending owner approval.
 
 ## 6. Scan history and retention
 
