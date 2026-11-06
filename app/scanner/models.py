@@ -5,7 +5,7 @@ Pure data only: nothing in this module performs I/O or touches the network.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import StrEnum
 
 
@@ -87,8 +87,9 @@ class InvalidIndicator(ValueError):
 class HostInfo:
     """A normalised host."""
 
-    ascii: str
-    unicode: str | None
+    # Hostnames are user data (PRIVACY.md): keep them out of repr/logs.
+    ascii: str = field(repr=False)
+    unicode: str | None = field(repr=False)
     kind: HostKind
     is_idn: bool
     lookup_blocked_reason: str | None
@@ -113,14 +114,16 @@ class Indicator:
 
     indicator_type: IndicatorType
     scheme: str | None
-    host: str
-    host_unicode: str | None
+    # Sensitive fields (host, path, anything derived from them) are excluded
+    # from repr so an accidental debug log of an Indicator cannot leak them.
+    host: str = field(repr=False)
+    host_unicode: str | None = field(repr=False)
     host_kind: HostKind
     is_idn: bool
     port: int | None
-    path: str
+    path: str = field(repr=False)
     has_query: bool
     has_fragment: bool
-    display_value: str
-    url_without_query: str | None
+    display_value: str = field(repr=False)
+    url_without_query: str | None = field(repr=False)
     lookup_blocked_reason: str | None

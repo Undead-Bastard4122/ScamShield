@@ -43,7 +43,8 @@ def parse_indicator(raw: str, *, max_length: int = DEFAULT_MAX_LENGTH) -> Indica
         raise InvalidIndicator(RejectReason.EMPTY)
     if any(ch.isspace() for ch in text):
         raise InvalidIndicator(RejectReason.MULTIPLE_INDICATORS)
-    if any(unicodedata.category(ch) in {"Cc", "Cf"} for ch in text):
+    # Cc control, Cf format (zero-width, bidi), Cs lone surrogates.
+    if any(unicodedata.category(ch) in {"Cc", "Cf", "Cs"} for ch in text):
         raise InvalidIndicator(RejectReason.CONTROL_CHARACTERS)
     if "\\" in text:
         # Browsers read "\" as "/" in http URLs, which enables spoofing.

@@ -19,8 +19,11 @@ _LDH_LABEL = re.compile(r"^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$")
 _NUMERIC_LABEL = re.compile(r"^(?:0[xX][0-9a-fA-F]*|[0-9]+)$")
 _MAX_HOST_LENGTH = 253
 
-# Names that only make sense on a private or local network, or that are
-# reserved and never resolve publicly. Never offered to external providers.
+# A limited, conservative heuristic: names that only make sense on a private
+# network, or that are reserved and never resolve publicly. These are never
+# offered to external providers. This list is NOT exhaustive and is not
+# derived from the IANA special-use registry; do not treat a name that is
+# absent from it as public.
 _NON_PUBLIC_SUFFIXES = frozenset(
     {
         "localhost",
@@ -34,6 +37,7 @@ _NON_PUBLIC_SUFFIXES = frozenset(
         "test",
         "example",
         "invalid",
+        "onion",
     }
 )
 

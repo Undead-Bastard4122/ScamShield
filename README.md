@@ -66,16 +66,17 @@ Dependencies and exact runtime versions will be selected and pinned when impleme
 
 ## Development
 
-Requires Python 3.12 or newer (developed on 3.13). The input engine makes no network requests.
+Supported: Python 3.12 or newer. Development and tests use the exact version in `.python-version` (3.13.18). The input engine makes no network requests.
 
 ```
 python -m venv .venv && source .venv/bin/activate
-pip install -e ".[dev]"
+pip install -r requirements-dev.lock
+pip install -e . --no-deps
 ruff check . && ruff format --check .
 pytest
 ```
 
-A dependency lock file is not committed yet; it will be added when dependencies are pinned (see AGENT planning notes and P-001).
+`requirements.lock` and `requirements-dev.lock` pin exact versions but do not yet include hashes, because they were generated without network access. Add hashes (see the comment at the top of each file) before any release.
 
 ## Safety notice
 

@@ -1,0 +1,10 @@
+# Exact runtime + development pins (no hashes: generated offline on 2026-11-06).
+# Regenerate with hashes when network access is available, e.g.
+#   uv pip compile pyproject.toml --extra dev --generate-hashes -o requirements-dev.lock
+idna==3.20
+iniconfig==2.3.0
+packaging==26.3
+pluggy==1.6.0
+Pygments==2.21.0
+pytest==9.1.1
+ruff==0.16.9

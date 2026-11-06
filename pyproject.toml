@@ -6,13 +6,13 @@ readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "MIT" }
 dependencies = [
-    "idna>=3.7",
+    "idna==3.20",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=8",
-    "ruff>=0.6",
+    "pytest==9.1.1",
+    "ruff==0.16.9",
 ]
 
 [tool.setuptools.packages.find]

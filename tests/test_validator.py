@@ -203,6 +203,14 @@ def test_backslash_is_ambiguous(raw):
         "https://xn--bad-.com/",
         "https://[fe80::1%25eth0]/",
         "https://example.com,evil.com/",
+        "https://%65xample.com/",
+        "https://example.com%2Fevil/",
+        "https://example.com%00/",
+        "https://[::1%25]/",
+        "https://a.com:80:80/",
+        "https://[]/",
+        "https://[",
+        "https://a.com]/",
     ],
 )
 def test_invalid_hosts(raw):
@@ -217,6 +225,7 @@ def test_invalid_hosts(raw):
         "https://example.com:abc/",
         "https://example.com:/",
         "https://example.com:-1/",
+        "https://[::1]:80:80/",
         "https://example.com:١٢/",
     ],
 )
@@ -279,6 +288,19 @@ def test_ipv6_display_and_port():
     assert ind.lookup_blocked_reason is None
 
 
+def test_repr_never_contains_sensitive_parts():
+    ind = parse_indicator("https://secret-host.example.org/reset/PATHTOKEN?q=QTOKEN#f")
+    text = repr(ind) + str(ind)
+    for secret in ("secret-host", "PATHTOKEN", "QTOKEN", "example.org"):
+        assert secret not in text
+
+
+def test_host_info_repr_hides_hostname():
+    from app.scanner.normalizer import normalize_host
+
+    assert "secret-host" not in repr(normalize_host("secret-host.example.org"))
+
+
 # --- private-looking names -------------------------------------------------
 
 
@@ -293,6 +315,7 @@ def test_ipv6_display_and_port():
         "https://nas.lan/",
         "intranet",
         "app.corp",
+        "hiddenservice.onion",
     ],
 )
 def test_private_names_are_blocked_from_lookup(raw):
