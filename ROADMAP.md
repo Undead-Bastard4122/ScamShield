@@ -19,7 +19,7 @@ Deliverables:
 - [x] Draft privacy and threat-model baselines.
 - [x] Review candidate threat-intelligence providers.
 - [ ] Approve the first provider set and its permitted use.
-- [ ] Approve scan-history and retention behaviour.
+- [x] Approve scan-history and retention behaviour (baseline: off by default, opt-in, 30 days; deletion and backup semantics still to be written).
 - [ ] Approve the consent flow.
 - [ ] Approve the final database schema.
 - [ ] Complete Phase 0 sign-off.

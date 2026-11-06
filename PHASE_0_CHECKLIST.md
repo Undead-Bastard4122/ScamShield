@@ -46,11 +46,11 @@ Repository: https://github.com/Undead-Bastard4122/ScamShield
 - [x] Candidate provider capabilities and limitations researched.
 - [x] Commercial-use restrictions recorded where applicable.
 - [x] Provider-specific privacy concerns recorded.
-- [ ] Select the first provider or providers for the MVP.
+- [x] Select the first provider or providers for the MVP (candidates: PhishTank, URLhaus; enablement pending term checks, D-015).
 - [ ] Confirm current terms, quotas, and cost at implementation time.
 - [ ] Decide which provider data categories may be shared.
 - [ ] Approve user-facing consent wording and interaction.
-- [ ] Confirm whether consent is per scan or a revocable saved preference.
+- [x] Confirm whether consent is per scan or a revocable saved preference (per scan, per provider; D-018).
 
 ## E. Data and security design
 
@@ -58,8 +58,9 @@ Repository: https://github.com/Undead-Bastard4122/ScamShield
 - [x] External provider requests require consent as the design baseline.
 - [x] Raw URL and secret logging prohibited.
 - [x] Conceptual data entities documented.
-- [ ] Approve whether scan history is off by default.
-- [ ] Approve retention period and deletion semantics.
+- [x] Approve whether scan history is off by default (off by default, opt-in; D-016).
+- [x] 30-day retention baseline approved (D-016).
+- [ ] Approve live-database deletion, retention expiry, and backup-purge semantics.
 - [ ] Approve final database schema, indexes, and constraints.
 - [ ] Review risk classification rules and freshness requirements.
 - [ ] Review threat model and remaining risks.
@@ -76,7 +77,7 @@ Repository: https://github.com/Undead-Bastard4122/ScamShield
 
 All items in sections D, E, and F marked as approval tasks must be resolved or explicitly deferred with a documented reason.
 
-**Coding status:** Not started. Do not create application source files during Phase 0.
+**Coding status:** Phase 0 remains in progress. On 2026-11-06 the owner authorised a narrow exception: only the standalone Phase 1 input engine and configuration loader (offline, no providers, no Telegram, no persistence) may be built, on `agent/*` branches via pull request. This is not Phase 0 sign-off. Provider work, the Telegram bot, persistence, Phase 2 and later remain blocked until the open items above are resolved and sign-off is given.
 
 ## Next milestone after sign-off
 

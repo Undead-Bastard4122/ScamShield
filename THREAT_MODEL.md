@@ -160,6 +160,8 @@ Data crossing a boundary must be validated, minimised, and handled under the rel
 
 ### T-10 — Malicious or misleading report submissions
 
+**Status:** The report workflow is deferred to post-MVP (D-020); this threat applies when it returns.
+
 **Scenario:** Users submit fabricated reports, spam, personal data, or malicious URLs in the report workflow.
 
 **Controls:**
