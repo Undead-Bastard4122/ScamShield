@@ -4,7 +4,7 @@
 **Status:** In progress  
 **Last updated:** 2026-11-05
 
-This checklist tracks preparation only. Application code must not be started until the exit criteria are approved.
+This checklist tracks preparation only. Application code must not be started until the exit criteria are approved, with one owner-authorised exception: the standalone Phase 1 input engine and configuration loader (see Coding status below). Phase 0 itself remains in progress.
 
 ## A. Repository baseline
 
