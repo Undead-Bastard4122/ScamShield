@@ -111,7 +111,7 @@ This file records decisions that materially affect product scope, architecture, 
 
 ### D-015 — Threat-intelligence providers
 
-**Status:** Candidates approved by owner (2026-11-06); production enablement pending  
+**Status:** Candidates approved by owner (2026-11-06). On 2026-11-07 the owner directed that PhishTank stay **disabled**; URLhaus is also disabled. Production enablement pending  
 **Decision:** PhishTank and URLhaus are the approved first candidates to evaluate. No provider is yet approved as a production dependency. Each stays disabled until its current terms, quotas, key availability and privacy handling are re-checked, and no provider accounts, keys, or real user indicators are used without further owner approval.  
 **Reason:** API coverage, privacy impact, commercial-use rules, rate limits, cost, attribution, and retention must be evaluated. See PROVIDER_EVALUATION.md.
 
@@ -123,13 +123,13 @@ This file records decisions that materially affect product scope, architecture, 
 
 ### D-017 — Final database schema
 
-**Status:** Pending  
-**Decision:** Conceptual entities are documented in ARCHITECTURE.md. Field types, indexes, and deletion behaviour are not approved yet.
+**Status:** Timing approved by owner (2026-11-07): final schema approval is deferred to the start of Phase 5  
+**Decision:** Phases 1 to 4 need no persistence, so the final schema (field types, indexes, constraints, deletion behaviour) is approved at the start of Phase 5, before any database implementation. Conceptual entities remain in ARCHITECTURE.md as the starting point. Until then no database code may be written.
 
 ### D-018 — Consent interaction
 
-**Status:** Consent model approved by owner (2026-11-06): per-scan, per-provider, no remembered consent in the MVP; exact wording pending  
-**Decision:** The consent flow must show provider name and data category before a lookup. Consent is per scan and per provider, with no remembered consent in the MVP (approved). Exact wording, the data preview, and handling of sensitive URL components such as the path and query string remain to be approved.
+**Status:** Approved by owner. Model (2026-11-06): per-scan, per-provider, no remembered consent in the MVP. Wording (2026-11-07): revision 3.1, recorded in docs/CONSENT_COPY.md  
+**Decision:** The consent flow must show provider name and data category before a lookup. Consent is per scan and per provider, with no remembered consent in the MVP (approved). The approved wording is in docs/CONSENT_COPY.md. It must be rechecked once a hosting environment is chosen and before any provider is enabled.
 
 ### D-019 — Risk thresholds and freshness
 

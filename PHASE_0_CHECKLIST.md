@@ -47,9 +47,9 @@ Repository: https://github.com/Undead-Bastard4122/ScamShield
 - [x] Commercial-use restrictions recorded where applicable.
 - [x] Provider-specific privacy concerns recorded.
 - [x] Select the first provider or providers for the MVP (candidates: PhishTank, URLhaus; enablement pending term checks, D-015).
-- [ ] Confirm current terms, quotas, and cost at implementation time.
-- [ ] Decide which provider data categories may be shared.
-- [ ] Approve user-facing consent wording and interaction.
+- [ ] Confirm current terms, quotas, and cost at implementation time. *Proposed deferral to the Phase 3 entry gate (cannot be settled before a provider is enabled); awaiting owner confirmation.*
+- [x] Decide which provider data categories may be shared (a URL without userinfo, query string and fragment, path included; bare domains are not sent to PhishTank; see docs/CONSENT_COPY.md).
+- [x] Approve user-facing consent wording and interaction (owner, 2026-11-07: revision 3.1).
 - [x] Confirm whether consent is per scan or a revocable saved preference (per scan, per provider; D-018).
 
 ## E. Data and security design
@@ -60,17 +60,17 @@ Repository: https://github.com/Undead-Bastard4122/ScamShield
 - [x] Conceptual data entities documented.
 - [x] Approve whether scan history is off by default (off by default, opt-in; D-016).
 - [x] 30-day retention baseline approved (D-016).
-- [ ] Approve live-database deletion, retention expiry, and backup-purge semantics.
-- [ ] Approve final database schema, indexes, and constraints.
-- [ ] Review risk classification rules and freshness requirements.
+- [ ] Approve live-database deletion, retention expiry, and backup-purge semantics. *Proposed deferral to the Phase 5 entry gate together with the schema; awaiting owner confirmation.*
+- [x] Approve final database schema, indexes, and constraints: **deferred by the owner to the start of Phase 5** (D-017, 2026-11-07).
+- [ ] Review risk classification rules and freshness requirements. *Proposed: review local-only rules at the Phase 2 entry and provider freshness rules at the Phase 3 entry (D-019); awaiting owner confirmation.*
 - [ ] Review threat model and remaining risks.
 
 ## F. Phase 1 readiness
 
-- [ ] Define the supported runtime and dependency versions.
-- [ ] Agree on initial test cases and safe fixtures.
-- [ ] Confirm acceptance criteria for the standalone URL/domain engine.
-- [ ] Confirm local development and Git branching workflow.
+- [x] Define the supported runtime and dependency versions (Python 3.13.18; exact pins in interim lock files without hashes; delivered in the Phase 1 pull request).
+- [x] Agree on initial test cases and safe fixtures (tests/test_validator.py and tests/test_config.py; synthetic data only; delivered in the Phase 1 pull request).
+- [x] Confirm acceptance criteria for the standalone URL/domain engine (docs/input-engine.md and its test suite).
+- [x] Confirm local development and Git branching workflow (CONTRIBUTING.md).
 - [ ] Approve Phase 0 exit.
 
 ## Phase 0 exit criteria
