@@ -27,6 +27,13 @@ whitespace.
 - `url_without_query` is scheme + host + port + path. The path can still hold
   private tokens, so the consent gate (Phase 3) decides whether to send it.
 
+## Output safety
+
+`display_value` is privacy-redacted but **not** safe to paste into a message.
+It can contain user-controlled path text, including characters that are
+special in Telegram HTML or MarkdownV2. Whoever renders it (Phase 4) must
+escape it for the chosen parse mode, or send it as plain text.
+
 ## Rejected (not guessed)
 
 | Reason | Examples |

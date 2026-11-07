@@ -58,15 +58,16 @@ Dependencies and exact runtime versions will be selected and pinned when impleme
 | Architecture baseline | Documented |
 | Threat model | Drafted |
 | Privacy specification | Drafted |
-| Provider evaluation | Candidate review completed; provider selection pending |
-| Database schema and retention | Pending approval |
+| Provider evaluation | PhishTank and URLhaus approved as candidates only; nothing is enabled, and terms and data handling still need checking |
+| Scan history | Baseline approved: off by default, opt-in, 30 days. Deletion, expiry and backup semantics still pending |
+| Database schema | Pending approval |
 | Phase 0 sign-off | Pending |
 | Phase 1: input engine and configuration | In progress (awaiting review) |
 | Telegram bot, providers, persistence | Not started |
 
 ## Development
 
-Supported: Python 3.12 or newer. Development and tests use the exact version in `.python-version` (3.13.18). The input engine makes no network requests.
+Supported: Python 3.12 or newer. The test suite has been run on Python 3.13.18 (the exact version in `.python-version`) and on 3.12. The input engine makes no network requests. Configuration is read from real environment variables only; `.env.example` documents the names and is not loaded automatically.
 
 ```
 python -m venv .venv && source .venv/bin/activate
@@ -76,7 +77,7 @@ ruff check . && ruff format --check .
 pytest
 ```
 
-`requirements.lock` and `requirements-dev.lock` pin exact versions but do not yet include hashes, because they were generated without network access. Add hashes (see the comment at the top of each file) before any release.
+`requirements.lock` and `requirements-dev.lock` are **interim development pins**: exact versions, including the build backend, but no hashes and not freshly resolved, because they were generated without network access. Regenerate them with hashes (see the comment at the top of each file) before any release.
 
 ## Safety notice
 

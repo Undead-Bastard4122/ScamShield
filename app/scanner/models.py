@@ -107,6 +107,10 @@ class Indicator:
     can hold private tokens, so the consent gate (Phase 3) decides whether
     to use it. It is ``None`` for domain-only input.
 
+    ``display_value`` is privacy-redacted, not output-safe: it can still hold
+    user-controlled path text. Callers must escape it for the output format
+    (for example Telegram HTML or MarkdownV2) before sending it anywhere.
+
     ``lookup_blocked_reason`` is set for hosts that must never be sent to an
     external provider (private or reserved IPs, single-label or internal
     names). Hostnames can themselves be private (see PRIVACY.md).
