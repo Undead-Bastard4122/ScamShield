@@ -67,7 +67,7 @@ Dependencies and exact runtime versions will be selected and pinned when impleme
 
 ## Development
 
-Supported: Python 3.12 or newer. The test suite has been run on Python 3.13.18 (the exact version in `.python-version`) and on 3.12. The input engine makes no network requests. Configuration is read from real environment variables only; `.env.example` documents the names and is not loaded automatically.
+Supported: Python 3.13 only for now (the exact version in `.python-version` is 3.13.18). Python 3.12 is not claimed: the suite passed there once, but only in a mixed environment, not a clean one. Widen the range after a clean 3.12 virtualenv run. The input engine makes no network requests. Configuration is read from real environment variables only; `.env.example` documents the names and is not loaded automatically.
 
 ```
 python -m venv .venv && source .venv/bin/activate
