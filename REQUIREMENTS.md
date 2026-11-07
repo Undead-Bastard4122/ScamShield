@@ -212,20 +212,20 @@ The MVP is acceptable only when:
 
 ## 13. Decisions status before implementation
 
-**Owner-approved baselines (2026-11-06):**
+**Owner-approved:**
 
-- PhishTank and URLhaus are the first provider candidates (D-015).
+- PhishTank and URLhaus are the first provider candidates, and both are currently disabled (D-015).
 - Scan history is off by default and opt-in, with a 30-day retention baseline (D-016).
-- Consent is per scan and per provider, with no remembered consent in the MVP (D-018).
+- The final database schema is approved at the start of Phase 5, not before (D-017).
+- Consent is per scan and per provider, with no remembered consent in the MVP. The wording is revision 3.1 in `docs/CONSENT_COPY.md` (D-018).
 - `/report` is deferred to post-MVP (D-020).
 
-**Still open:**
+**Still open, with the point at which each must be settled:**
 
-- Provider terms, key availability, permitted data scope, and enablement for each provider.
-- Exact consent wording, data preview, and query-parameter handling.
-- Live-database deletion, retention expiry, and backup-purge semantics.
-- Final database schema and its timing (see D-017).
-- Minimum provider evidence and freshness rules for HIGH RISK, and how a scan where the user declined all providers is classified (D-019).
-- Exact runtime and dependency versions to pin.
+- Provider terms, quotas, cost, key availability, and data handling: before any provider is enabled (Phase 3 entry).
+- Live-database deletion, retention expiry, backup-purge semantics, and the final schema: before any database code (Phase 5 entry).
+- Minimum provider evidence and freshness rules for HIGH RISK, and the classification of a scan where the user declined all providers (D-019): local rules at Phase 2 entry, provider rules at Phase 3 entry.
+- Re-checking the consent copy (outbound IP wording, provider data handling) once a host is chosen and before a provider is enabled.
+- Hash-locked dependencies before release.
 
-Open decisions must be resolved before the components they affect are implemented.
+Open decisions must be resolved before the components they affect are implemented. The Phase 2 and Phase 3 entries above are proposals awaiting owner approval (see PHASE_0_CHECKLIST.md).

@@ -64,7 +64,7 @@ Provider consent must not be hidden inside a general acceptance of the bot's ter
 
 The default is **local-only analysis**.
 
-No external provider request should occur until the user explicitly consents to the relevant data disclosure. No consent preference is remembered in the MVP: consent applies to one provider and one scan (D-018). A saved, revocable preference would need a future scope decision. The exact consent wording is still pending owner approval.
+No external provider request should occur until the user explicitly consents to the relevant data disclosure. No consent preference is remembered in the MVP: consent applies to one provider and one scan (D-018). A saved, revocable preference would need a future scope decision. The approved consent wording is revision 3.1 in `docs/CONSENT_COPY.md`; it must be rechecked (provider data handling, outbound IP wording) before any provider is enabled.
 
 ## 6. Scan history and retention
 

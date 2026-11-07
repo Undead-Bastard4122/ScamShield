@@ -42,6 +42,9 @@ Deliverables:
 
 ## Phase 2 — Local heuristic analysis
 
+**Entry gate (proposed, awaiting owner approval):** review the local-only risk rules before implementation. A local heuristic alone must not produce HIGH RISK or NO KNOWN THREAT DETECTED; those outcomes need approved evidence rules (D-019).
+
+
 Deliverables:
 
 - Define documented heuristic identifiers.
@@ -54,6 +57,9 @@ Deliverables:
 **Exit condition:** Local analysis returns deterministic evidence and does not make network requests.
 
 ## Phase 3 — Threat-intelligence integration
+
+**Entry gate (proposed, awaiting owner approval):** before any adapter is enabled or any provider account, key, or request is used, re-verify the provider's current terms, quotas, cost, and data handling, and re-check `docs/CONSENT_COPY.md`. Review provider evidence and freshness rules (D-019).
+
 
 Deliverables:
 
