@@ -228,4 +228,4 @@ The MVP is acceptable only when:
 - Re-checking the consent copy (outbound IP wording, provider data handling) once a host is chosen and before a provider is enabled.
 - Hash-locked dependencies before release.
 
-Open decisions must be resolved before the components they affect are implemented. The Phase 2 and Phase 3 entries above are proposals awaiting owner approval (see PHASE_0_CHECKLIST.md).
+Open decisions must be resolved before the components they affect are implemented. The deferrals above were approved by the owner on 2026-11-08 (see PHASE_0_CHECKLIST.md).

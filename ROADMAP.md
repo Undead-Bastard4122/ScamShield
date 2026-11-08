@@ -8,7 +8,7 @@ The roadmap is milestone-based. A phase is complete only when its deliverables a
 
 ## Phase 0 — Project documentation and technical preparation
 
-**Status:** In progress
+**Status:** Approved by the project owner on 2026-11-08
 
 Deliverables:
 
@@ -22,7 +22,7 @@ Deliverables:
 - [x] Approve scan-history and retention behaviour (baseline: off by default, opt-in, 30 days; deletion and backup semantics still to be written).
 - [x] Approve the consent flow (per scan, per provider; wording revision 3.1 in docs/CONSENT_COPY.md).
 - [x] Decide database schema timing: final schema approval deferred to the start of Phase 5 (D-017).
-- [ ] Complete Phase 0 sign-off.
+- [x] Complete Phase 0 sign-off (owner, 2026-11-08).
 
 **Exit condition:** Product scope, provider policy, privacy controls, schema timing, and Phase 1 acceptance tests are approved. Items explicitly deferred to a later phase entry are listed in PHASE_0_CHECKLIST.md. No application code is required in this phase.
 
@@ -42,7 +42,7 @@ Deliverables:
 
 ## Phase 2 — Local heuristic analysis
 
-**Entry gate (proposed, awaiting owner approval):** review the local-only risk rules before implementation. A local heuristic alone must not produce HIGH RISK or NO KNOWN THREAT DETECTED; those outcomes need approved evidence rules (D-019).
+**Entry gate (owner-approved 2026-11-08):** review the local-only risk rules before implementation. A local heuristic alone must not produce HIGH RISK or NO KNOWN THREAT DETECTED; those outcomes need approved evidence rules (D-019).
 
 
 Deliverables:
@@ -58,7 +58,7 @@ Deliverables:
 
 ## Phase 3 — Threat-intelligence integration
 
-**Entry gate (proposed, awaiting owner approval):** before any adapter is enabled or any provider account, key, or request is used, re-verify the provider's current terms, quotas, cost, and data handling, and re-check `docs/CONSENT_COPY.md`. Review provider evidence and freshness rules (D-019).
+**Entry gate (owner-approved 2026-11-08):** before any adapter is enabled or any provider account, key, or request is used, re-verify the provider's current terms, quotas, cost, and data handling, and re-check `docs/CONSENT_COPY.md`. Review provider evidence and freshness rules (D-019).
 
 
 Deliverables:
@@ -88,7 +88,7 @@ Deliverables:
 
 ## Phase 5 — Persistence and user controls
 
-**Entry gate (owner approval required before any database code):** final schema, indexes and constraints; live-database deletion, retention expiry and backup-purge semantics (D-016, D-017).
+**Entry gate (owner-approved 2026-11-08; the approvals themselves are still required before any database code):** final schema, indexes and constraints; live-database deletion, retention expiry and backup-purge semantics (D-016, D-017).
 
 Deliverables:
 

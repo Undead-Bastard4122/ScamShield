@@ -1,6 +1,6 @@
 # ScamShield — Threat Model
 
-**Document status:** Phase 0 baseline  
+**Document status:** Phase 0 baseline, accepted by the project owner on 2026-11-08 as the planning baseline. This is not production security approval: the controls described here still have to be implemented and tested.  
 **Version:** 1.0-draft  
 **Last reviewed:** 2026-11-05  
 **Method:** Asset, trust-boundary, and STRIDE-style review
