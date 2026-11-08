@@ -64,8 +64,22 @@ special-use registry.** A name missing from it must not be assumed public.
   chosen so that anything ambiguous is rejected. It has not been compared
   against a WHATWG reference implementation; a corpus comparison is a
   follow-up.
-- **No registrable domain.** Deriving it needs a pinned public suffix list
-  that never downloads at runtime. Not implemented; do not approximate with
-  "last two labels". Required before any component needs it.
+- **Registrable domain comes from a vendored, dated Public Suffix List
+  snapshot** (`app/scanner/data/`, provenance and licence in `PSL_SOURCE.md`
+  and `PSL_LICENSE_MPL-2.0.txt`). It is never downloaded, never updated at
+  runtime, and never approximated with "last two labels". The lookup passes
+  the official PSL test vectors (78 cases) and fails closed if the snapshot
+  is missing or malformed.
+  - `registrable_domain`, `public_suffix`, `suffix_section` (`icann` or
+    `private`) and `suffix_listed` are set only for public-looking DNS names.
+    They are `None` for IP addresses and for single-label or private/reserved
+    names, even where the PSL default rule would give an answer.
+  - A suffix that is not in the list gets the PSL default rule (the last
+    label) and `suffix_listed = False`. Treat that result with caution.
+  - A host that is itself a public suffix (for example `github.io`) has no
+    registrable domain.
+  - The snapshot ages. It was taken on 2026-11-08 and must be refreshed in a
+    reviewed change before release. It was not compared with the copy on
+    publicsuffix.org (that site was unreachable when it was taken).
 - **No shortener detection** (Phase 2).
 - Lock files have no hashes yet (see README).

@@ -10,7 +10,9 @@ from __future__ import annotations
 import re
 import unicodedata
 
+from app.scanner import psl
 from app.scanner.models import (
+    HostInfo,
     HostKind,
     Indicator,
     IndicatorType,
@@ -68,6 +70,31 @@ def parse_indicator(raw: str, *, max_length: int = DEFAULT_MAX_LENGTH) -> Indica
     return _parse_domain(text)
 
 
+def _suffix_fields(host: HostInfo) -> dict[str, object]:
+    """Public-suffix data for a public-looking DNS name, else all None.
+
+    Private, reserved and single-label names are deliberately excluded even
+    though the PSL default rule would produce an answer for them.
+    """
+    empty: dict[str, object] = {
+        "registrable_domain": None,
+        "public_suffix": None,
+        "suffix_section": None,
+        "suffix_listed": None,
+    }
+    if host.kind is not HostKind.DNS_NAME or host.lookup_blocked_reason is not None:
+        return empty
+    info = psl.lookup(host.ascii)
+    if info is None:
+        return empty
+    return {
+        "registrable_domain": info.registrable_domain,
+        "public_suffix": info.public_suffix,
+        "suffix_section": info.section,
+        "suffix_listed": info.listed,
+    }
+
+
 def _parse_domain(text: str) -> Indicator:
     if any(ch in text for ch in "/?#@:[]"):
         # A path, port, email address, or similar: not a bare domain, and
@@ -90,6 +117,7 @@ def _parse_domain(text: str) -> Indicator:
         display_value=host.ascii,
         url_without_query=None,
         lookup_blocked_reason=host.lookup_blocked_reason,
+        **_suffix_fields(host),  # type: ignore[arg-type]
     )
 
 
@@ -158,6 +186,7 @@ def _parse_url(scheme: str, rest: str) -> Indicator:
         display_value=display,
         url_without_query=origin + path,
         lookup_blocked_reason=host.lookup_blocked_reason,
+        **_suffix_fields(host),  # type: ignore[arg-type]
     )
 
 

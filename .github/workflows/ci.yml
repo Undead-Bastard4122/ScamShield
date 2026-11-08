@@ -20,6 +20,11 @@ jobs:
         run: |
           python -m pip install -r requirements-dev.lock
           python -m pip install -e . --no-deps
+      - name: Check the built wheel includes the vendored PSL
+        run: |
+          python -m pip wheel . --no-deps -w "$RUNNER_TEMP/wheel"
+          python -m zipfile -l "$RUNNER_TEMP"/wheel/scamshield-*.whl | grep public_suffix_list.dat
+          python -m zipfile -l "$RUNNER_TEMP"/wheel/scamshield-*.whl | grep PSL_LICENSE_MPL-2.0.txt
       - name: Lint
         run: |
           ruff check .
