@@ -131,3 +131,11 @@ class Indicator:
     display_value: str = field(repr=False)
     url_without_query: str | None = field(repr=False)
     lookup_blocked_reason: str | None
+    # From the vendored Public Suffix List (see docs/input-engine.md). All are
+    # None for IP addresses and for single-label or private/reserved names.
+    # suffix_listed is False when the suffix is not in the list and the PSL
+    # default rule was used; treat such results with caution.
+    registrable_domain: str | None = field(default=None, repr=False)
+    public_suffix: str | None = field(default=None, repr=False)
+    suffix_section: str | None = None
+    suffix_listed: bool | None = None

@@ -399,3 +399,62 @@ def test_parse_makes_no_network_calls(monkeypatch):
     ]
     for raw in samples:
         parse_indicator(raw)
+
+
+# --- public suffix integration ---------------------------------------------
+
+
+def test_registrable_domain_for_urls_and_domains():
+    ind = parse_indicator("https://login.secure.example.co.uk/x")
+    assert ind.registrable_domain == "example.co.uk"
+    assert ind.public_suffix == "co.uk"
+    assert ind.suffix_section == "icann"
+    assert ind.suffix_listed is True
+    assert parse_indicator("a.b.example.com").registrable_domain == "example.com"
+
+
+def test_private_section_suffix_is_reported():
+    ind = parse_indicator("https://victim.github.io/")
+    assert ind.registrable_domain == "victim.github.io"
+    assert ind.suffix_section == "private"
+
+
+def test_suffix_only_host_has_no_registrable_domain():
+    ind = parse_indicator("https://github.io/")
+    assert ind.registrable_domain is None
+    assert ind.public_suffix == "github.io"
+
+
+def test_unlisted_suffix_is_flagged():
+    ind = parse_indicator("https://shop.example.notarealtld/")
+    assert ind.suffix_listed is False
+    assert ind.suffix_section is None
+    assert ind.registrable_domain == "example.notarealtld"
+
+
+@pytest.mark.parametrize(
+    "raw",
+    [
+        "http://8.8.8.8/",
+        "http://[2001:4860:4860::8888]/",
+        "http://127.0.0.1/",
+        "http://localhost/",
+        "http://intranet/",
+        "https://printer.local/",
+        "https://nas.lan/",
+        "https://thing.example/",
+    ],
+)
+def test_no_suffix_data_for_ips_and_private_names(raw):
+    ind = parse_indicator(raw)
+    assert ind.registrable_domain is None
+    assert ind.public_suffix is None
+    assert ind.suffix_listed is None
+
+
+def test_idn_registrable_domain_is_punycode():
+    ind = parse_indicator("https://www.b\u00fccher.example.org/")
+    assert ind.host == "www.xn--bcher-kva.example.org"
+    assert ind.registrable_domain == "example.org"
+    ind = parse_indicator("https://b\u00fccher.org/")
+    assert ind.registrable_domain == "xn--bcher-kva.org"
