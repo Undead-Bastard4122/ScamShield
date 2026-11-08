@@ -111,30 +111,37 @@ This file records decisions that materially affect product scope, architecture, 
 
 ### D-015 — Threat-intelligence providers
 
-**Status:** Pending evaluation  
-**Decision:** No provider is yet approved as a default production dependency.  
+**Status:** Candidates approved by owner (2026-11-06). On 2026-11-07 the owner directed that PhishTank stay **disabled**; URLhaus is also disabled. Production enablement pending  
+**Decision:** PhishTank and URLhaus are the approved first candidates to evaluate. No provider is yet approved as a production dependency. Each stays disabled until its current terms, quotas, key availability and privacy handling are re-checked, and no provider accounts, keys, or real user indicators are used without further owner approval.  
 **Reason:** API coverage, privacy impact, commercial-use rules, rate limits, cost, attribution, and retention must be evaluated. See PROVIDER_EVALUATION.md.
 
 ### D-016 — Scan-history retention
 
-**Status:** Pending user/product approval  
-**Decision:** History should be optional. A 30-day retention period is a planning proposal, not a final commitment.  
+**Status:** Baseline approved by owner (2026-11-06); deletion and backup semantics pending  
+**Decision:** History is off by default and opt-in, with a 30-day retention period and a user-accessible delete action. Live-database deletion, retention expiry, and backup purge must be specified separately before persistence work; no promise is made that deletion instantly erases backups unless the backup design guarantees it.  
 **Reason:** History is not needed for a scan and can reveal user activity.
 
 ### D-017 — Final database schema
 
-**Status:** Pending  
-**Decision:** Conceptual entities are documented in ARCHITECTURE.md. Field types, indexes, and deletion behaviour are not approved yet.
+**Status:** Timing approved by owner (2026-11-07): final schema approval is deferred to the start of Phase 5  
+**Decision:** Phases 1 to 4 need no persistence, so the final schema (field types, indexes, constraints, deletion behaviour) is approved at the start of Phase 5, before any database implementation. Conceptual entities remain in ARCHITECTURE.md as the starting point. Until then no database code may be written.
 
 ### D-018 — Consent interaction
 
-**Status:** Pending  
-**Decision:** The consent flow must show provider name and data category before a lookup. Exact wording, whether consent is per-scan or saved as a revocable setting, and handling of sensitive query parameters remain to be approved.
+**Status:** Approved by owner. Model (2026-11-06): per-scan, per-provider, no remembered consent in the MVP. Wording (2026-11-07): revision 3.1, recorded in docs/CONSENT_COPY.md  
+**Decision:** The consent flow must show provider name and data category before a lookup. Consent is per scan and per provider, with no remembered consent in the MVP (approved). The approved wording is in docs/CONSENT_COPY.md. It must be rechecked once a hosting environment is chosen and before any provider is enabled.
 
 ### D-019 — Risk thresholds and freshness
 
 **Status:** Pending test evidence  
 **Decision:** High-risk thresholds and provider freshness requirements will be finalised against documented provider semantics and a labelled test dataset.
+
+### D-020 — `/report` deferred to post-MVP
+
+**Status:** Accepted (owner, 2026-11-06)  
+**Decision:** FR-14 and the user-report use case are removed from the MVP and moved to the post-MVP backlog.  
+**Reason:** THREAT_MODEL.md T-10 requires a moderation and deletion process before the feature is enabled, and none is defined. Removing it reduces storage, abuse, and personal-data risk.  
+**Consequences:** REQUIREMENTS.md updated. T-10 stays in the threat model for when the feature returns.
 
 ## Change procedure
 

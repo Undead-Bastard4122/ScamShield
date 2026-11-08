@@ -47,7 +47,6 @@ An individual Telegram user who wants to check a link or domain before interacti
 3. A user views the findings, checks performed, data-sharing status, and limitations.
 4. A user views saved scan history if history is enabled.
 5. A user reads the privacy notice and requests deletion of saved history.
-6. A user reports a suspected scam for review. A report is not automatically published to an external feed.
 
 ## 5. Scope
 
@@ -77,6 +76,7 @@ An individual Telegram user who wants to check a link or domain before interacti
 - File downloading, malware execution, or sandbox detonation.
 - Port scanning, exploitation, credential collection, or offensive security features.
 - AI-generated verdicts.
+- A /report flow and any storage or moderation of user-submitted scam reports (deferred to post-MVP, see D-020).
 - Automatic publication of user reports to third-party feeds.
 - Claims that a website is safe or guaranteed legitimate.
 - A numeric probability of maliciousness without a validated and calibrated model.
@@ -132,7 +132,7 @@ The MVP must not resolve or follow a shortener. It may identify a known shorteni
 | FR-11 | Return a classification, evidence explanations, sources, timestamps, and coverage limitations. |
 | FR-12 | Provide /history only if history storage is enabled by the user. |
 | FR-13 | Provide a deletion command or equivalent flow for saved history. |
-| FR-14 | Provide a /report flow that stores a minimal user-submitted report for review, subject to abuse controls. |
+| FR-14 | *Deferred to post-MVP (D-020).* A /report flow requires a defined moderation and deletion process first. |
 | FR-15 | Apply per-user and global request limits. |
 | FR-16 | Handle malformed input, Telegram errors, provider outages, and database failures safely. |
 
@@ -176,7 +176,7 @@ A domain-only assessment must disclose that path-specific threats may not have b
 - If a provider requires the full URL, explain that requirement before transmission and let the user decline.
 - Do not persist the complete submitted URL by default.
 - Do not log raw URLs, query parameters, secrets, or API credentials.
-- Scan history must be opt-in; retention period remains a Phase 0 decision.
+- Scan history must be opt-in and off by default, with a 30-day retention baseline (D-016). Expiry, deletion, and backup-purge details remain to be approved.
 - Provide a deletion path for saved history.
 - Keep provider API keys in environment-based secret storage, never in source control.
 
@@ -210,14 +210,22 @@ The MVP is acceptable only when:
 9. Automated tests cover benign, suspicious, invalid, provider failure, and conflicting-result cases.
 10. Installation, configuration, limitations, and security boundaries are documented.
 
-## 13. Open decisions before implementation
+## 13. Decisions status before implementation
 
-- Which one or two providers will be enabled in the MVP?
-- What exact consent wording and data preview will be shown?
-- Will history be disabled by default or offered as an opt-in setting?
-- What retention period will apply to opted-in history?
-- What final database schema and deletion behaviour will be used?
-- What minimum provider evidence and freshness rules qualify for HIGH RISK?
-- Which runtime and dependency versions will be pinned?
+**Owner-approved:**
 
-These decisions must be resolved before the affected components are implemented.
+- PhishTank and URLhaus are the first provider candidates, and both are currently disabled (D-015).
+- Scan history is off by default and opt-in, with a 30-day retention baseline (D-016).
+- The final database schema is approved at the start of Phase 5, not before (D-017).
+- Consent is per scan and per provider, with no remembered consent in the MVP. The wording is revision 3.1 in `docs/CONSENT_COPY.md` (D-018).
+- `/report` is deferred to post-MVP (D-020).
+
+**Still open, with the point at which each must be settled:**
+
+- Provider terms, quotas, cost, key availability, and data handling: before any provider is enabled (Phase 3 entry).
+- Live-database deletion, retention expiry, backup-purge semantics, and the final schema: before any database code (Phase 5 entry).
+- Minimum provider evidence and freshness rules for HIGH RISK, and the classification of a scan where the user declined all providers (D-019): local rules at Phase 2 entry, provider rules at Phase 3 entry.
+- Re-checking the consent copy (outbound IP wording, provider data handling) once a host is chosen and before a provider is enabled.
+- Hash-locked dependencies before release.
+
+Open decisions must be resolved before the components they affect are implemented. The deferrals above were approved by the owner on 2026-11-08 (see PHASE_0_CHECKLIST.md).

@@ -1,6 +1,6 @@
 # ScamShield — Threat Model
 
-**Document status:** Phase 0 baseline  
+**Document status:** Phase 0 baseline, accepted by the project owner on 2026-11-08 as the planning baseline. This is not production security approval: the controls described here still have to be implemented and tested.  
 **Version:** 1.0-draft  
 **Last reviewed:** 2026-11-05  
 **Method:** Asset, trust-boundary, and STRIDE-style review
@@ -159,6 +159,8 @@ Data crossing a boundary must be validated, minimised, and handled under the rel
 - Review encryption-at-rest needs for the selected host.
 
 ### T-10 — Malicious or misleading report submissions
+
+**Status:** The report workflow is deferred to post-MVP (D-020); this threat applies when it returns.
 
 **Scenario:** Users submit fabricated reports, spam, personal data, or malicious URLs in the report workflow.
 
