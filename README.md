@@ -4,7 +4,7 @@
 
 ScamShield is a planned, privacy-first Telegram cybersecurity bot for investigating suspicious URLs and domain names. It is designed to combine local indicator analysis with carefully selected threat-intelligence sources and return an evidence-based report that explains what was checked, what was found, and what remains unknown.
 
-> **Project status: Phase 0 — planning and documentation.** Application code has not started. ScamShield is not yet a working bot and must not be relied on to assess real links.
+> **Project status: early development.** Phase 0 (planning) is approved and Phase 1 (the offline URL/domain input engine) is in progress. ScamShield is not yet a working bot and must not be relied on to assess real links.
 
 ## Product principles
 
@@ -58,10 +58,26 @@ Dependencies and exact runtime versions will be selected and pinned when impleme
 | Architecture baseline | Documented |
 | Threat model | Drafted |
 | Privacy specification | Drafted |
-| Provider evaluation | Candidate review completed; provider selection pending |
-| Database schema and retention | Pending approval |
-| Phase 0 sign-off | Pending |
-| Application code | Not started |
+| Provider evaluation | PhishTank and URLhaus approved as candidates only; nothing is enabled, and terms and data handling still need checking |
+| Scan history | Baseline approved: off by default, opt-in, 30 days. Deletion, expiry and backup semantics still pending |
+| Database schema | Approval deferred to the start of Phase 5 (D-017) |
+| Phase 0 sign-off | Approved by the owner on 2026-11-08 |
+| Phase 1: input engine and configuration | In progress (awaiting review) |
+| Telegram bot, providers, persistence | Not started |
+
+## Development
+
+Supported: Python 3.13 only for now (the exact version in `.python-version` is 3.13.18). Python 3.12 is not claimed: the suite passed there once, but only in a mixed environment, not a clean one. Widen the range after a clean 3.12 virtualenv run. The input engine makes no network requests. Configuration is read from real environment variables only; `.env.example` documents the names and is not loaded automatically.
+
+```
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements-dev.lock
+pip install -e . --no-deps
+ruff check . && ruff format --check .
+pytest
+```
+
+`requirements.lock` and `requirements-dev.lock` are **interim development pins**: exact versions, including the build backend, but no hashes and not freshly resolved, because they were generated without network access. Regenerate them with hashes (see the comment at the top of each file) before any release.
 
 ## Safety notice
 

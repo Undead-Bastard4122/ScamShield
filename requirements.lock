@@ -1,0 +1,4 @@
+# Exact runtime pins (no hashes: generated offline on 2026-11-06).
+# Regenerate with hashes when network access is available, e.g.
+#   uv pip compile pyproject.toml --generate-hashes -o requirements.lock
+idna==3.20
