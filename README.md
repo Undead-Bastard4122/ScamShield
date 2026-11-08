@@ -4,7 +4,7 @@
 
 ScamShield is a planned, privacy-first Telegram cybersecurity bot for investigating suspicious URLs and domain names. It is designed to combine local indicator analysis with carefully selected threat-intelligence sources and return an evidence-based report that explains what was checked, what was found, and what remains unknown.
 
-> **Project status: early development.** Phase 0 (planning) is largely complete and Phase 1 (the offline URL/domain input engine) is in progress. ScamShield is not yet a working bot and must not be relied on to assess real links.
+> **Project status: early development.** Phase 0 (planning) is approved and Phase 1 (the offline URL/domain input engine) is in progress. ScamShield is not yet a working bot and must not be relied on to assess real links.
 
 ## Product principles
 
@@ -60,8 +60,8 @@ Dependencies and exact runtime versions will be selected and pinned when impleme
 | Privacy specification | Drafted |
 | Provider evaluation | PhishTank and URLhaus approved as candidates only; nothing is enabled, and terms and data handling still need checking |
 | Scan history | Baseline approved: off by default, opt-in, 30 days. Deletion, expiry and backup semantics still pending |
-| Database schema | Pending approval |
-| Phase 0 sign-off | Pending |
+| Database schema | Approval deferred to the start of Phase 5 (D-017) |
+| Phase 0 sign-off | Approved by the owner on 2026-11-08 |
 | Phase 1: input engine and configuration | In progress (awaiting review) |
 | Telegram bot, providers, persistence | Not started |
 
