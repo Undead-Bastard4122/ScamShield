@@ -60,10 +60,10 @@ special-use registry.** A name missing from it must not be assumed public.
 
 ## Known limits
 
-- **Not a browser parser.** This is a strict subset of what browsers accept,
-  chosen so that anything ambiguous is rejected. It has not been compared
-  against a WHATWG reference implementation; a corpus comparison is a
-  follow-up.
+- **Not a browser parser, and not claimed to be.** This is a strict subset of
+  what browsers accept, chosen so that anything ambiguous is rejected. It is
+  compared against the WHATWG URL test data (see below); that comparison is
+  evidence about differences, not a promise of browser equivalence.
 - **Registrable domain comes from a vendored, dated Public Suffix List
   snapshot** (`app/scanner/data/`, provenance and licence in `PSL_SOURCE.md`
   and `PSL_LICENSE_MPL-2.0.txt`). It is never downloaded, never updated at
@@ -83,3 +83,32 @@ special-use registry.** A name missing from it must not be assumed public.
     publicsuffix.org (that site was unreachable when it was taken).
 - **No shortener detection** (Phase 2).
 - Lock files have no hashes yet (see README).
+
+## Differential testing against the WHATWG URL test data
+
+`tests/test_wpt_differential.py` runs ScamShield over the web-platform-tests
+`urltestdata.json` (pinned to upstream commit `96769025`, BSD-3-Clause; see
+`tests/data/wpt/SOURCE.md`). In scope are absolute inputs that a browser
+parses to an `http(s)` URL, plus absolute `http(s)`-looking inputs that a
+browser rejects. Result on the pinned data: **283 cases**.
+
+| Outcome | Cases | Meaning |
+|---|---|---|
+| equivalent | 69 | Both accept; scheme, host (after IDNA) and port agree. |
+| agree_reject | 149 | Browser rejects and so do we. |
+| strict_reject | 65 | Browser accepts, we reject on purpose (reasons below). |
+| MISMATCH | 0 | Both accept but disagree. The test fails if this is ever not 0. |
+| ACCEPTS_BROWSER_FAILURE | 0 | We accept what a browser rejects. The test fails if this is ever not 0. |
+
+Strict rejections by reason: embedded credentials 15, invalid host 13,
+`http:example.com`-style missing `//` 12, control characters 9, inner
+whitespace 8, disguised IPv4 5, backslashes 3.
+
+Every outcome is recorded in `tests/data/wpt/expected_outcomes.json`. Any
+change to parser behaviour shows up as a diff there and must be reviewed.
+
+**What this does not cover:** path, query and fragment normalisation (we keep
+the path as submitted and discard query and fragment, so they are not
+compared); relative URLs; non-http(s) schemes; the IDNA conformance data;
+and the JavaScript-only test file. Only the pinned snapshot was compared, so
+browsers that change later are not tracked.
