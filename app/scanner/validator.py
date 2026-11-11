@@ -62,6 +62,11 @@ def parse_indicator(raw: str, *, max_length: int = DEFAULT_MAX_LENGTH) -> Indica
             if scheme not in _ALLOWED_SCHEMES:
                 raise InvalidIndicator(RejectReason.UNSUPPORTED_SCHEME)
             return _parse_url(scheme, after_colon[2:])
+        if match.group(1).lower() in _ALLOWED_SCHEMES:
+            # "http:example.com" or "https:/example.com": browsers accept
+            # these, we do not guess. The fix for the user is the same as for
+            # a missing scheme, so say that rather than "unsupported scheme".
+            raise InvalidIndicator(RejectReason.MISSING_SCHEME)
         if not _LOOKS_LIKE_PORT.match(after_colon):
             # javascript:, data:, mailto:, and similar.
             raise InvalidIndicator(RejectReason.UNSUPPORTED_SCHEME)

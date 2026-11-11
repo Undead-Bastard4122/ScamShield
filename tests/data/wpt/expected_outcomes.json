@@ -1,0 +1,1700 @@
+[
+ {
+  "index": 2,
+  "input": "https://test:@test",
+  "outcome": "strict_reject",
+  "detail": "embedded_credentials"
+ },
+ {
+  "index": 3,
+  "input": "https://:@test",
+  "outcome": "strict_reject",
+  "detail": "embedded_credentials"
+ },
+ {
+  "index": 46,
+  "input": "http://é@é",
+  "outcome": "strict_reject",
+  "detail": "embedded_credentials"
+ },
+ {
+  "index": 47,
+  "input": "http://é@example.com",
+  "outcome": "strict_reject",
+  "detail": "embedded_credentials"
+ },
+ {
+  "index": 55,
+  "input": "http://a:b@c\\",
+  "outcome": "strict_reject",
+  "detail": "ambiguous_syntax"
+ },
+ {
+  "index": 138,
+  "input": "http://example.com/././foo",
+  "outcome": "path_difference",
+  "detail": "dot_segments"
+ },
+ {
+  "index": 139,
+  "input": "http://example.com/./.foo",
+  "outcome": "path_difference",
+  "detail": "dot_segments"
+ },
+ {
+  "index": 140,
+  "input": "http://example.com/foo/.",
+  "outcome": "path_difference",
+  "detail": "dot_segments"
+ },
+ {
+  "index": 141,
+  "input": "http://example.com/foo/./",
+  "outcome": "path_difference",
+  "detail": "dot_segments"
+ },
+ {
+  "index": 142,
+  "input": "http://example.com/foo/bar/..",
+  "outcome": "path_difference",
+  "detail": "dot_segments"
+ },
+ {
+  "index": 143,
+  "input": "http://example.com/foo/bar/../",
+  "outcome": "path_difference",
+  "detail": "dot_segments"
+ },
+ {
+  "index": 144,
+  "input": "http://example.com/foo/..bar",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 145,
+  "input": "http://example.com/foo/bar/../ton",
+  "outcome": "path_difference",
+  "detail": "dot_segments"
+ },
+ {
+  "index": 146,
+  "input": "http://example.com/foo/bar/../ton/../../a",
+  "outcome": "path_difference",
+  "detail": "dot_segments"
+ },
+ {
+  "index": 147,
+  "input": "http://example.com/foo/../../..",
+  "outcome": "path_difference",
+  "detail": "dot_segments"
+ },
+ {
+  "index": 148,
+  "input": "http://example.com/foo/../../../ton",
+  "outcome": "path_difference",
+  "detail": "dot_segments"
+ },
+ {
+  "index": 149,
+  "input": "http://example.com/foo/%2e",
+  "outcome": "path_difference",
+  "detail": "dot_segments"
+ },
+ {
+  "index": 150,
+  "input": "http://example.com/foo/%2e%2",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 151,
+  "input": "http://example.com/foo/%2e./%2e%2e/.%2e/%2e.bar",
+  "outcome": "path_difference",
+  "detail": "dot_segments"
+ },
+ {
+  "index": 152,
+  "input": "http://example.com////../..",
+  "outcome": "path_difference",
+  "detail": "dot_segments"
+ },
+ {
+  "index": 153,
+  "input": "http://example.com/foo/bar//../..",
+  "outcome": "path_difference",
+  "detail": "dot_segments"
+ },
+ {
+  "index": 154,
+  "input": "http://example.com/foo/bar//..",
+  "outcome": "path_difference",
+  "detail": "dot_segments"
+ },
+ {
+  "index": 155,
+  "input": "http://example.com/foo",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 156,
+  "input": "http://example.com/%20foo",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 157,
+  "input": "http://example.com/foo%",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 158,
+  "input": "http://example.com/foo%2",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 159,
+  "input": "http://example.com/foo%2zbar",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 160,
+  "input": "http://example.com/foo%2Â©zbar",
+  "outcome": "path_difference",
+  "detail": "percent_encoding"
+ },
+ {
+  "index": 161,
+  "input": "http://example.com/foo%41%7a",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 162,
+  "input": "http://example.com/foo\t%91",
+  "outcome": "strict_reject",
+  "detail": "multiple_indicators"
+ },
+ {
+  "index": 163,
+  "input": "http://example.com/foo%00%51",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 164,
+  "input": "http://example.com/(%28:%3A%29)",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 165,
+  "input": "http://example.com/%3A%3a%3C%3c",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 166,
+  "input": "http://example.com/foo\tbar",
+  "outcome": "strict_reject",
+  "detail": "multiple_indicators"
+ },
+ {
+  "index": 167,
+  "input": "http://example.com\\\\foo\\\\bar",
+  "outcome": "strict_reject",
+  "detail": "ambiguous_syntax"
+ },
+ {
+  "index": 168,
+  "input": "http://example.com/%7Ffp3%3Eju%3Dduvgw%3Dd",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 169,
+  "input": "http://example.com/@asdf%40",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 170,
+  "input": "http://example.com/你好你好",
+  "outcome": "path_difference",
+  "detail": "percent_encoding"
+ },
+ {
+  "index": 171,
+  "input": "http://example.com/‥/foo",
+  "outcome": "path_difference",
+  "detail": "percent_encoding"
+ },
+ {
+  "index": 172,
+  "input": "http://example.com/﻿/foo",
+  "outcome": "strict_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 173,
+  "input": "http://example.com/‮/foo/‭/bar",
+  "outcome": "strict_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 174,
+  "input": "http://www.google.com/foo?bar=baz#",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 175,
+  "input": "http://www.google.com/foo?bar=baz# »",
+  "outcome": "strict_reject",
+  "detail": "multiple_indicators"
+ },
+ {
+  "index": 177,
+  "input": "http://www.google.com",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 178,
+  "input": "http://192.0x00A80001",
+  "outcome": "strict_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 179,
+  "input": "http://www/foo%2Ehtml",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 180,
+  "input": "http://www/foo/%2E/html",
+  "outcome": "path_difference",
+  "detail": "dot_segments"
+ },
+ {
+  "index": 181,
+  "input": "http://user:pass@/",
+  "outcome": "agree_reject",
+  "detail": "embedded_credentials"
+ },
+ {
+  "index": 182,
+  "input": "http://%25DOMAIN:foobar@foodomain.com/",
+  "outcome": "strict_reject",
+  "detail": "embedded_credentials"
+ },
+ {
+  "index": 183,
+  "input": "http:\\\\www.google.com\\foo",
+  "outcome": "strict_reject",
+  "detail": "ambiguous_syntax"
+ },
+ {
+  "index": 184,
+  "input": "http://foo:80/",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 185,
+  "input": "http://foo:81/",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 187,
+  "input": "http://foo:-80/",
+  "outcome": "agree_reject",
+  "detail": "invalid_port"
+ },
+ {
+  "index": 188,
+  "input": "https://foo:443/",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 189,
+  "input": "https://foo:80/",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 202,
+  "input": "http:/example.com/",
+  "outcome": "strict_reject",
+  "detail": "missing_scheme"
+ },
+ {
+  "index": 204,
+  "input": "https:/example.com/",
+  "outcome": "strict_reject",
+  "detail": "missing_scheme"
+ },
+ {
+  "index": 214,
+  "input": "http:example.com/",
+  "outcome": "strict_reject",
+  "detail": "missing_scheme"
+ },
+ {
+  "index": 216,
+  "input": "https:example.com/",
+  "outcome": "strict_reject",
+  "detail": "missing_scheme"
+ },
+ {
+  "index": 225,
+  "input": "https://example.com/aaa/bbb/%2e%2e?query",
+  "outcome": "path_difference",
+  "detail": "dot_segments"
+ },
+ {
+  "index": 226,
+  "input": "http:@www.example.com",
+  "outcome": "strict_reject",
+  "detail": "missing_scheme"
+ },
+ {
+  "index": 227,
+  "input": "http:/@www.example.com",
+  "outcome": "strict_reject",
+  "detail": "missing_scheme"
+ },
+ {
+  "index": 228,
+  "input": "http://@www.example.com",
+  "outcome": "strict_reject",
+  "detail": "embedded_credentials"
+ },
+ {
+  "index": 229,
+  "input": "http:a:b@www.example.com",
+  "outcome": "strict_reject",
+  "detail": "missing_scheme"
+ },
+ {
+  "index": 230,
+  "input": "http:/a:b@www.example.com",
+  "outcome": "strict_reject",
+  "detail": "missing_scheme"
+ },
+ {
+  "index": 231,
+  "input": "http://a:b@www.example.com",
+  "outcome": "strict_reject",
+  "detail": "embedded_credentials"
+ },
+ {
+  "index": 232,
+  "input": "http://@pple.com",
+  "outcome": "strict_reject",
+  "detail": "embedded_credentials"
+ },
+ {
+  "index": 233,
+  "input": "http::b@www.example.com",
+  "outcome": "strict_reject",
+  "detail": "missing_scheme"
+ },
+ {
+  "index": 234,
+  "input": "http:/:b@www.example.com",
+  "outcome": "strict_reject",
+  "detail": "missing_scheme"
+ },
+ {
+  "index": 235,
+  "input": "http://:b@www.example.com",
+  "outcome": "strict_reject",
+  "detail": "embedded_credentials"
+ },
+ {
+  "index": 236,
+  "input": "http:/:@/www.example.com",
+  "outcome": "agree_reject",
+  "detail": "missing_scheme"
+ },
+ {
+  "index": 237,
+  "input": "http://user@/www.example.com",
+  "outcome": "agree_reject",
+  "detail": "embedded_credentials"
+ },
+ {
+  "index": 238,
+  "input": "http:@/www.example.com",
+  "outcome": "agree_reject",
+  "detail": "missing_scheme"
+ },
+ {
+  "index": 239,
+  "input": "http:/@/www.example.com",
+  "outcome": "agree_reject",
+  "detail": "missing_scheme"
+ },
+ {
+  "index": 240,
+  "input": "http://@/www.example.com",
+  "outcome": "agree_reject",
+  "detail": "embedded_credentials"
+ },
+ {
+  "index": 241,
+  "input": "https:@/www.example.com",
+  "outcome": "agree_reject",
+  "detail": "missing_scheme"
+ },
+ {
+  "index": 242,
+  "input": "http:a:b@/www.example.com",
+  "outcome": "agree_reject",
+  "detail": "missing_scheme"
+ },
+ {
+  "index": 243,
+  "input": "http:/a:b@/www.example.com",
+  "outcome": "agree_reject",
+  "detail": "missing_scheme"
+ },
+ {
+  "index": 244,
+  "input": "http://a:b@/www.example.com",
+  "outcome": "agree_reject",
+  "detail": "embedded_credentials"
+ },
+ {
+  "index": 245,
+  "input": "http::@/www.example.com",
+  "outcome": "agree_reject",
+  "detail": "missing_scheme"
+ },
+ {
+  "index": 246,
+  "input": "http:a:@www.example.com",
+  "outcome": "strict_reject",
+  "detail": "missing_scheme"
+ },
+ {
+  "index": 247,
+  "input": "http:/a:@www.example.com",
+  "outcome": "strict_reject",
+  "detail": "missing_scheme"
+ },
+ {
+  "index": 248,
+  "input": "http://a:@www.example.com",
+  "outcome": "strict_reject",
+  "detail": "embedded_credentials"
+ },
+ {
+  "index": 249,
+  "input": "http://www.@pple.com",
+  "outcome": "strict_reject",
+  "detail": "embedded_credentials"
+ },
+ {
+  "index": 250,
+  "input": "http:@:www.example.com",
+  "outcome": "agree_reject",
+  "detail": "missing_scheme"
+ },
+ {
+  "index": 251,
+  "input": "http:/@:www.example.com",
+  "outcome": "agree_reject",
+  "detail": "missing_scheme"
+ },
+ {
+  "index": 252,
+  "input": "http://@:www.example.com",
+  "outcome": "agree_reject",
+  "detail": "embedded_credentials"
+ },
+ {
+  "index": 253,
+  "input": "http://:@www.example.com",
+  "outcome": "strict_reject",
+  "detail": "embedded_credentials"
+ },
+ {
+  "index": 278,
+  "input": "\u0000\u001b\u0004\u0012 http://example.com/\u001f \r ",
+  "outcome": "strict_reject",
+  "detail": "multiple_indicators"
+ },
+ {
+  "index": 281,
+  "input": "http://example.com/",
+  "outcome": "strict_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 293,
+  "input": "https://�",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 294,
+  "input": "https://%EF%BF%BD",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 295,
+  "input": "https://x/�?�#�",
+  "outcome": "path_difference",
+  "detail": "percent_encoding"
+ },
+ {
+  "index": 296,
+  "input": "http://a.b.c.xn--pokxncvks",
+  "outcome": "strict_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 297,
+  "input": "http://10.0.0.xn--pokxncvks",
+  "outcome": "strict_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 298,
+  "input": "http://a.b.c.XN--pokxncvks",
+  "outcome": "strict_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 299,
+  "input": "http://a.b.c.Xn--pokxncvks",
+  "outcome": "strict_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 300,
+  "input": "http://10.0.0.XN--pokxncvks",
+  "outcome": "strict_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 301,
+  "input": "http://10.0.0.xN--pokxncvks",
+  "outcome": "strict_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 308,
+  "input": "https://faß.ExAmPlE/",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 318,
+  "input": "https://x x:12",
+  "outcome": "agree_reject",
+  "detail": "multiple_indicators"
+ },
+ {
+  "index": 320,
+  "input": "http://./",
+  "outcome": "strict_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 321,
+  "input": "http://../",
+  "outcome": "strict_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 323,
+  "input": "http://[www.google.com]/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 334,
+  "input": "http://😀x@host/",
+  "outcome": "strict_reject",
+  "detail": "embedded_credentials"
+ },
+ {
+  "index": 335,
+  "input": "http://a:😀x@host/",
+  "outcome": "strict_reject",
+  "detail": "embedded_credentials"
+ },
+ {
+  "index": 336,
+  "input": "http://😀@host/",
+  "outcome": "strict_reject",
+  "detail": "embedded_credentials"
+ },
+ {
+  "index": 337,
+  "input": "https://localhost?q=🔥",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 338,
+  "input": "https://localhost#🔥",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 348,
+  "input": "http://host/?'",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 406,
+  "input": "http://a\u0000b/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 407,
+  "input": "http://a\u0001b/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 408,
+  "input": "http://a\u0002b/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 409,
+  "input": "http://a\u0003b/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 410,
+  "input": "http://a\u0004b/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 411,
+  "input": "http://a\u0005b/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 412,
+  "input": "http://a\u0006b/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 413,
+  "input": "http://a\u0007b/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 414,
+  "input": "http://a\bb/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 415,
+  "input": "http://a\u000bb/",
+  "outcome": "agree_reject",
+  "detail": "multiple_indicators"
+ },
+ {
+  "index": 416,
+  "input": "http://a\fb/",
+  "outcome": "agree_reject",
+  "detail": "multiple_indicators"
+ },
+ {
+  "index": 417,
+  "input": "http://a\u000eb/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 418,
+  "input": "http://a\u000fb/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 419,
+  "input": "http://a\u0010b/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 420,
+  "input": "http://a\u0011b/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 421,
+  "input": "http://a\u0012b/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 422,
+  "input": "http://a\u0013b/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 423,
+  "input": "http://a\u0014b/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 424,
+  "input": "http://a\u0015b/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 425,
+  "input": "http://a\u0016b/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 426,
+  "input": "http://a\u0017b/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 427,
+  "input": "http://a\u0018b/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 428,
+  "input": "http://a\u0019b/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 429,
+  "input": "http://a\u001ab/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 430,
+  "input": "http://a\u001bb/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 431,
+  "input": "http://a\u001cb/",
+  "outcome": "agree_reject",
+  "detail": "multiple_indicators"
+ },
+ {
+  "index": 432,
+  "input": "http://a\u001db/",
+  "outcome": "agree_reject",
+  "detail": "multiple_indicators"
+ },
+ {
+  "index": 433,
+  "input": "http://a\u001eb/",
+  "outcome": "agree_reject",
+  "detail": "multiple_indicators"
+ },
+ {
+  "index": 434,
+  "input": "http://a\u001fb/",
+  "outcome": "agree_reject",
+  "detail": "multiple_indicators"
+ },
+ {
+  "index": 435,
+  "input": "http://a b/",
+  "outcome": "agree_reject",
+  "detail": "multiple_indicators"
+ },
+ {
+  "index": 436,
+  "input": "http://a%b/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 437,
+  "input": "http://a<b",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 438,
+  "input": "http://a>b",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 439,
+  "input": "http://a[b/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 440,
+  "input": "http://a]b/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 441,
+  "input": "http://a^b",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 442,
+  "input": "http://a|b/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 443,
+  "input": "http://ab/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 444,
+  "input": "http://ho\tst/",
+  "outcome": "strict_reject",
+  "detail": "multiple_indicators"
+ },
+ {
+  "index": 445,
+  "input": "http://ho\nst/",
+  "outcome": "strict_reject",
+  "detail": "multiple_indicators"
+ },
+ {
+  "index": 446,
+  "input": "http://ho\rst/",
+  "outcome": "strict_reject",
+  "detail": "multiple_indicators"
+ },
+ {
+  "index": 447,
+  "input": "http://ho%00st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 448,
+  "input": "http://ho%01st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 449,
+  "input": "http://ho%02st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 450,
+  "input": "http://ho%03st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 451,
+  "input": "http://ho%04st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 452,
+  "input": "http://ho%05st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 453,
+  "input": "http://ho%06st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 454,
+  "input": "http://ho%07st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 455,
+  "input": "http://ho%08st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 456,
+  "input": "http://ho%09st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 457,
+  "input": "http://ho%0Ast/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 458,
+  "input": "http://ho%0Bst/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 459,
+  "input": "http://ho%0Cst/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 460,
+  "input": "http://ho%0Dst/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 461,
+  "input": "http://ho%0Est/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 462,
+  "input": "http://ho%0Fst/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 463,
+  "input": "http://ho%10st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 464,
+  "input": "http://ho%11st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 465,
+  "input": "http://ho%12st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 466,
+  "input": "http://ho%13st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 467,
+  "input": "http://ho%14st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 468,
+  "input": "http://ho%15st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 469,
+  "input": "http://ho%16st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 470,
+  "input": "http://ho%17st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 471,
+  "input": "http://ho%18st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 472,
+  "input": "http://ho%19st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 473,
+  "input": "http://ho%1Ast/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 474,
+  "input": "http://ho%1Bst/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 475,
+  "input": "http://ho%1Cst/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 476,
+  "input": "http://ho%1Dst/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 477,
+  "input": "http://ho%1Est/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 478,
+  "input": "http://ho%1Fst/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 479,
+  "input": "http://ho%20st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 480,
+  "input": "http://ho%23st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 481,
+  "input": "http://ho%25st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 482,
+  "input": "http://ho%2Fst/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 483,
+  "input": "http://ho%3Ast/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 484,
+  "input": "http://ho%3Cst/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 485,
+  "input": "http://ho%3Est/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 486,
+  "input": "http://ho%3Fst/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 487,
+  "input": "http://ho%40st/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 488,
+  "input": "http://ho%5Bst/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 489,
+  "input": "http://ho%5Cst/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 490,
+  "input": "http://ho%5Dst/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 491,
+  "input": "http://ho%7Cst/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 492,
+  "input": "http://ho%7Fst/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 493,
+  "input": "http://!\"$&'()*+,-.;=_`{}~/",
+  "outcome": "strict_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 497,
+  "input": "https://example.com%80/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 498,
+  "input": "https://example.com%A0/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 500,
+  "input": "https://%e2%98%83",
+  "outcome": "strict_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 501,
+  "input": "http://127.0.0.1:10100/relative_import.html",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 502,
+  "input": "http://facebook.com/?foo=%7B%22abc%22",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 503,
+  "input": "https://localhost:3000/jqueryui@1.2.3",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 504,
+  "input": "h\tt\nt\rp://h\to\ns\rt:9\t0\n0\r0/p\ta\nt\rh?q\tu\ne\rry#f\tr\na\rg",
+  "outcome": "strict_reject",
+  "detail": "multiple_indicators"
+ },
+ {
+  "index": 510,
+  "input": "http://foo.bar/baz?qux#foo\bbar",
+  "outcome": "strict_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 511,
+  "input": "http://foo.bar/baz?qux#foo\"bar",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 512,
+  "input": "http://foo.bar/baz?qux#foo<bar",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 513,
+  "input": "http://foo.bar/baz?qux#foo>bar",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 514,
+  "input": "http://foo.bar/baz?qux#foo`bar",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 534,
+  "input": "https://0x.0x.0",
+  "outcome": "strict_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 535,
+  "input": "https://0x.0x.0x.0x",
+  "outcome": "strict_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 536,
+  "input": "https://00.00.00.00",
+  "outcome": "strict_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 537,
+  "input": "https://0000000000000000000000000000000000000000177.0.0.1",
+  "outcome": "strict_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 538,
+  "input": "https://0x100000000/test",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 539,
+  "input": "https://256.0.0.1/test",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 547,
+  "input": "https://%43%7C/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 635,
+  "input": "https://[0:1:2:3:4:5:192.0.02.1]/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 636,
+  "input": "https://[192.0.2.1::]/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 639,
+  "input": "https://[0::0::0]",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 640,
+  "input": "https://[0:.0]",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 641,
+  "input": "https://[0:0:]",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 642,
+  "input": "https://[0:1:2:3:4:5:6:7.0.0.0.1]",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 643,
+  "input": "https://[0:1.00.0.0.0]",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 644,
+  "input": "https://[0:1.290.0.0.0]",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 645,
+  "input": "https://[0:1.23.23]",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 646,
+  "input": "http://?",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 647,
+  "input": "http://#",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 704,
+  "input": "http://0x7f.0.0.0x7g",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 705,
+  "input": "http://0X7F.0.0.0X7G",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 706,
+  "input": "http://[::127.0.0.0.1]",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 707,
+  "input": "http://[0:1:0:1:0:1:0:1]",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 708,
+  "input": "http://[1:0:1:0:1:0:1:0]",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 709,
+  "input": "http://example.org/test?\"",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 710,
+  "input": "http://example.org/test?#",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 711,
+  "input": "http://example.org/test?<",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 712,
+  "input": "http://example.org/test?>",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 713,
+  "input": "http://example.org/test?⌣",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 714,
+  "input": "http://example.org/test?%23%23",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 715,
+  "input": "http://example.org/test?%GH",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 716,
+  "input": "http://example.org/test?a#%EF",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 717,
+  "input": "http://example.org/test?a#%GH",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 727,
+  "input": "http://example.org/test?a#b\u0000c",
+  "outcome": "strict_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 742,
+  "input": "https://www.example.com/path{path.html?query'=query#fragment<fragment",
+  "outcome": "strict_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 764,
+  "input": "http://0..0x300/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 765,
+  "input": "http://0..0x300./",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 768,
+  "input": "http://1.2.3.08",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 769,
+  "input": "http://1.2.3.08.",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 770,
+  "input": "http://1.2.3.09",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 771,
+  "input": "http://09.2.3.4",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 772,
+  "input": "http://09.2.3.4.",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 773,
+  "input": "http://01.2.3.4.5",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 774,
+  "input": "http://01.2.3.4.5.",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 775,
+  "input": "http://0x100.2.3.4",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 776,
+  "input": "http://0x100.2.3.4.",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 777,
+  "input": "http://0x1.2.3.4.5",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 778,
+  "input": "http://0x1.2.3.4.5.",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 779,
+  "input": "http://foo.1.2.3.4",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 780,
+  "input": "http://foo.1.2.3.4.",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 781,
+  "input": "http://foo.2.3.4",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 782,
+  "input": "http://foo.2.3.4.",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 783,
+  "input": "http://foo.09",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 784,
+  "input": "http://foo.09.",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 785,
+  "input": "http://foo.0x4",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 786,
+  "input": "http://foo.0x4.",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 787,
+  "input": "http://foo.09..",
+  "outcome": "strict_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 788,
+  "input": "http://0999999999999999999/",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 789,
+  "input": "http://foo.0x",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 790,
+  "input": "http://foo.0XFfFfFfFfFfFfFfFfFfAcE123",
+  "outcome": "agree_reject",
+  "detail": "obfuscated_ip"
+ },
+ {
+  "index": 791,
+  "input": "http://💩.123/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 792,
+  "input": "https://\u0000y",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 793,
+  "input": "https://x/\u0000y",
+  "outcome": "strict_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 794,
+  "input": "https://x/?\u0000y",
+  "outcome": "strict_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 795,
+  "input": "https://x/?#\u0000y",
+  "outcome": "strict_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 796,
+  "input": "https://￿y",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 797,
+  "input": "https://x/￿y",
+  "outcome": "path_difference",
+  "detail": "percent_encoding"
+ },
+ {
+  "index": 798,
+  "input": "https://x/?￿y",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 799,
+  "input": "https://x/?#￿y",
+  "outcome": "equivalent",
+  "detail": null
+ },
+ {
+  "index": 809,
+  "input": "https://example.com/\"quoted\"",
+  "outcome": "path_difference",
+  "detail": "percent_encoding"
+ },
+ {
+  "index": 810,
+  "input": "https://a%C2%ADb/",
+  "outcome": "strict_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 811,
+  "input": "https://­/",
+  "outcome": "agree_reject",
+  "detail": "control_characters"
+ },
+ {
+  "index": 812,
+  "input": "https://%C2%AD/",
+  "outcome": "agree_reject",
+  "detail": "invalid_host"
+ },
+ {
+  "index": 813,
+  "input": "https://xn--/",
+  "outcome": "strict_reject",
+  "detail": "invalid_host"
+ }
+]
