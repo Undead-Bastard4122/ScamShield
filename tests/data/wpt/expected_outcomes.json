@@ -32,38 +32,38 @@
  {
   "index": 138,
   "input": "http://example.com/././foo",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "dot_segments"
  },
  {
   "index": 139,
   "input": "http://example.com/./.foo",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "dot_segments"
  },
  {
   "index": 140,
   "input": "http://example.com/foo/.",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "dot_segments"
  },
  {
   "index": 141,
   "input": "http://example.com/foo/./",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "dot_segments"
  },
  {
   "index": 142,
   "input": "http://example.com/foo/bar/..",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "dot_segments"
  },
  {
   "index": 143,
   "input": "http://example.com/foo/bar/../",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "dot_segments"
  },
  {
   "index": 144,
@@ -74,32 +74,32 @@
  {
   "index": 145,
   "input": "http://example.com/foo/bar/../ton",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "dot_segments"
  },
  {
   "index": 146,
   "input": "http://example.com/foo/bar/../ton/../../a",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "dot_segments"
  },
  {
   "index": 147,
   "input": "http://example.com/foo/../../..",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "dot_segments"
  },
  {
   "index": 148,
   "input": "http://example.com/foo/../../../ton",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "dot_segments"
  },
  {
   "index": 149,
   "input": "http://example.com/foo/%2e",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "dot_segments"
  },
  {
   "index": 150,
@@ -110,26 +110,26 @@
  {
   "index": 151,
   "input": "http://example.com/foo/%2e./%2e%2e/.%2e/%2e.bar",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "dot_segments"
  },
  {
   "index": 152,
   "input": "http://example.com////../..",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "dot_segments"
  },
  {
   "index": 153,
   "input": "http://example.com/foo/bar//../..",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "dot_segments"
  },
  {
   "index": 154,
   "input": "http://example.com/foo/bar//..",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "dot_segments"
  },
  {
   "index": 155,
@@ -164,8 +164,8 @@
  {
   "index": 160,
   "input": "http://example.com/foo%2Â©zbar",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "percent_encoding"
  },
  {
   "index": 161,
@@ -224,14 +224,14 @@
  {
   "index": 170,
   "input": "http://example.com/你好你好",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "percent_encoding"
  },
  {
   "index": 171,
   "input": "http://example.com/‥/foo",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "percent_encoding"
  },
  {
   "index": 172,
@@ -278,8 +278,8 @@
  {
   "index": 180,
   "input": "http://www/foo/%2E/html",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "dot_segments"
  },
  {
   "index": 181,
@@ -356,8 +356,8 @@
  {
   "index": 225,
   "input": "https://example.com/aaa/bbb/%2e%2e?query",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "dot_segments"
  },
  {
   "index": 226,
@@ -554,8 +554,8 @@
  {
   "index": 295,
   "input": "https://x/�?�#�",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "percent_encoding"
  },
  {
   "index": 296,
@@ -1652,8 +1652,8 @@
  {
   "index": 797,
   "input": "https://x/￿y",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "percent_encoding"
  },
  {
   "index": 798,
@@ -1670,8 +1670,8 @@
  {
   "index": 809,
   "input": "https://example.com/\"quoted\"",
-  "outcome": "equivalent",
-  "detail": null
+  "outcome": "path_difference",
+  "detail": "percent_encoding"
  },
  {
   "index": 810,

@@ -5,6 +5,12 @@ ScamShield is deliberately a strict subset of a browser URL parser. This
 module classifies every relevant WPT case so differences are visible and
 reviewed, not assumed. It does NOT claim browser equivalence.
 
+Compared for cases both parsers accept: scheme, host (after IDNA), port and
+path. Query and fragment are not compared: ScamShield drops them by design.
+ScamShield keeps the path as written (no dot-segment resolution, no
+percent-encoding); each such difference is classified, and must be fully
+explained by those two browser steps or the case is a PATH_MISMATCH.
+
 Run ``python tests/wpt_differential.py`` to regenerate the golden file after
 an intentional parser change, then review the diff.
 """
@@ -22,11 +28,71 @@ GOLDEN = DATA / "expected_outcomes.json"
 
 _HTTPISH = re.compile(r"^[\x00-\x20]*https?:", re.IGNORECASE)
 
-EQUIVALENT = "equivalent"
+EQUIVALENT = "equivalent"  # scheme, host, port AND path identical to the browser's
+# Scheme, host and port identical; ScamShield keeps the path as written while a
+# browser normalises it. Intentional: see docs/input-engine.md. The detail names
+# the browser step(s) that explain the whole difference.
+PATH_DIFFERENCE = "path_difference"
+PATH_MISMATCH = "PATH_MISMATCH"  # path differs and the browser steps do not explain it
 AGREE_REJECT = "agree_reject"
 STRICT_REJECT = "strict_reject"  # browser accepts, ScamShield rejects (by design)
 MISMATCH = "MISMATCH"  # both accept but disagree: must never happen
 ACCEPTS_BROWSER_FAILURE = "ACCEPTS_BROWSER_FAILURE"  # we accept, browser rejects
+
+
+_SINGLE_DOT = {".", "%2e"}
+_DOUBLE_DOT = {"..", ".%2e", "%2e.", "%2e%2e"}
+# WHATWG path percent-encode set (query set + ? ^ ` { }) plus C0 controls and
+# everything above U+007E, encoded as UTF-8.
+_PATH_ENCODE = set(' "#<>?^`{}')
+
+
+def resolve_dot_segments(path: str) -> str:
+    """Reference WHATWG dot-segment handling for an absolute http(s) path."""
+    segments = path[1:].split("/")
+    out: list[str] = []
+    for position, segment in enumerate(segments):
+        last = position == len(segments) - 1
+        lowered = segment.lower()
+        if lowered in _DOUBLE_DOT:
+            if out:
+                out.pop()
+            if last:
+                out.append("")
+        elif lowered in _SINGLE_DOT:
+            if last:
+                out.append("")
+        else:
+            out.append(segment)
+    return "/" + "/".join(out)
+
+
+def percent_encode_path(path: str) -> str:
+    out = []
+    for char in path:
+        if ord(char) < 0x20 or ord(char) > 0x7E or char in _PATH_ENCODE:
+            out.extend(f"%{byte:02X}" for byte in char.encode("utf-8"))
+        else:
+            out.append(char)
+    return "".join(out)
+
+
+def explain_path_difference(path: str, expected: str) -> str | None:
+    """Name the browser step(s) that turn ScamShield's path into ``expected``.
+
+    Returns None if applying dot-segment resolution and percent-encoding does
+    not reproduce the browser's pathname exactly (an unexplained difference).
+    """
+    resolved = resolve_dot_segments(path)
+    encoded = percent_encode_path(resolved)
+    if encoded != expected:
+        return None
+    steps = []
+    if resolved != path:
+        steps.append("dot_segments")
+    if encoded != resolved:
+        steps.append("percent_encoding")
+    return "+".join(steps)
 
 
 def load_cases() -> list[dict]:
@@ -65,7 +131,14 @@ def classify(case: dict) -> tuple[str, str | None] | None:
         and indicator.host == expected_host
         and indicator.port == expected_port
     )
-    return (EQUIVALENT, None) if same else (MISMATCH, indicator.host)
+    if not same:
+        return (MISMATCH, indicator.host)
+    # Query and fragment are intentionally dropped by ScamShield, so only the
+    # path is compared (WPT ``pathname`` excludes them too).
+    if indicator.path == case["pathname"]:
+        return (EQUIVALENT, None)
+    reason = explain_path_difference(indicator.path, case["pathname"])
+    return (PATH_DIFFERENCE, reason) if reason else (PATH_MISMATCH, indicator.path)
 
 
 def build_report() -> list[dict]:

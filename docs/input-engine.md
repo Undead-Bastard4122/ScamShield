@@ -94,7 +94,9 @@ browser rejects. Result on the pinned data: **283 cases**.
 
 | Outcome | Cases | Meaning |
 |---|---|---|
-| equivalent | 69 | Both accept; scheme, host (after IDNA) and port agree. |
+| equivalent | 46 | Both accept; scheme, host (after IDNA), port and path all agree. |
+| path_difference | 23 | Both accept; scheme, host and port agree, but we keep the path as written and the browser normalises it (see below). |
+| PATH_MISMATCH | 0 | Path differs and dot-segment resolution plus percent-encoding do not explain it. The test fails if this is ever not 0. |
 | agree_reject | 149 | Browser rejects and so do we. |
 | strict_reject | 65 | Browser accepts, we reject on purpose (reasons below). |
 | MISMATCH | 0 | Both accept but disagree. The test fails if this is ever not 0. |
@@ -104,11 +106,22 @@ Strict rejections by reason: embedded credentials 15, invalid host 13,
 `http:example.com`-style missing `//` 12, control characters 9, inner
 whitespace 8, disguised IPv4 5, backslashes 3.
 
+**Path differences (intentional).** The path is compared with WPT's
+`pathname`; query and fragment are not compared because we drop them. We never
+resolve dot segments or percent-encode, so 23 of the 69 both-accepted cases
+differ. Each one is fully explained by applying a reference implementation of
+two browser steps to our path and getting the browser's exact `pathname`:
+17 need dot-segment resolution only (`/a/../b` becomes `/b`, `/foo/%2e`
+becomes `/foo/`), 6 need percent-encoding only (non-ASCII characters and `"`).
+No case needs both, and none is left unexplained. Consequence: **do not use
+`Indicator.path` to decide whether two URLs point at the same resource**, since
+`/a/../b` and `/b` are different strings to us and the same page to a browser.
+No parser change was made.
+
 Every outcome is recorded in `tests/data/wpt/expected_outcomes.json`. Any
 change to parser behaviour shows up as a diff there and must be reviewed.
 
-**What this does not cover:** path, query and fragment normalisation (we keep
-the path as submitted and discard query and fragment, so they are not
-compared); relative URLs; non-http(s) schemes; the IDNA conformance data;
+**What this does not cover:** query and fragment (we discard them, so they are
+not compared); the path *semantics* of cases we reject; relative URLs; non-http(s) schemes; the IDNA conformance data;
 and the JavaScript-only test file. Only the pinned snapshot was compared, so
 browsers that change later are not tracked.

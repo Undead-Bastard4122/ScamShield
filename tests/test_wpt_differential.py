@@ -43,13 +43,59 @@ def test_corpus_is_the_pinned_upstream_file():
 def test_enough_cases_are_in_scope(report):
     counts = Counter(item["outcome"] for item in report)
     assert len(report) >= 250
-    assert counts[wd.EQUIVALENT] >= 60
+    assert counts[wd.EQUIVALENT] + counts[wd.PATH_DIFFERENCE] >= 60
+    assert counts[wd.EQUIVALENT] >= 40
     assert counts[wd.AGREE_REJECT] >= 100
 
 
 def test_no_case_where_both_accept_but_disagree(report):
     bad = [item for item in report if item["outcome"] == wd.MISMATCH]
     assert not bad, bad[:5]
+
+
+def test_every_path_difference_is_fully_explained(report):
+    bad = [item for item in report if item["outcome"] == wd.PATH_MISMATCH]
+    assert not bad, bad[:5]
+
+
+def test_path_differences_are_only_the_documented_browser_steps(report):
+    details = {
+        item["detail"] for item in report if item["outcome"] == wd.PATH_DIFFERENCE
+    }
+    assert details
+    allowed = {"dot_segments", "percent_encoding", "dot_segments+percent_encoding"}
+    assert details <= allowed
+
+
+def test_path_comparison_uses_the_path_the_parser_retains():
+    # ScamShield keeps the path as written; a browser normalises it.
+    kept = parse_indicator("http://example.com/a/../b")
+    assert kept.path == "/a/../b"
+    assert wd.explain_path_difference(kept.path, "/b") == "dot_segments"
+    assert wd.explain_path_difference("/你", "/%E4%BD%A0") == "percent_encoding"
+    assert wd.explain_path_difference("/a/../你", "/%E4%BD%A0") == (
+        "dot_segments+percent_encoding"
+    )
+
+
+def test_explainer_rejects_differences_it_cannot_account_for():
+    assert wd.explain_path_difference("/a/b", "/a/c") is None
+    assert wd.explain_path_difference("/a/b", "/A/b") is None
+
+
+def test_reference_dot_segment_and_encoding_steps():
+    for raw, expected in [
+        ("/./a", "/a"),
+        ("/a/.", "/a/"),
+        ("/a/b/../c", "/a/c"),
+        ("/a/%2E%2e/c", "/c"),
+        ("/../../x", "/x"),
+        ("/a/..", "/"),
+        ("////../..", "//"),
+    ]:
+        assert wd.resolve_dot_segments(raw) == expected, raw
+    assert wd.percent_encode_path('/a b"c') == "/a%20b%22c"
+    assert wd.percent_encode_path("/\u00e9") == "/%C3%A9"
 
 
 def test_never_accepts_what_browsers_reject(report):
@@ -70,7 +116,7 @@ def test_outcomes_match_the_reviewed_golden_file(report):
     )
 
 
-def test_equivalent_cases_agree_on_scheme_host_and_port():
+def test_equivalent_cases_agree_on_scheme_host_port_and_path():
     # Spot-check the comparison itself on a few known WPT shapes.
     for raw, host, port in [
         ("https://example.com:8443/a", "example.com", 8443),
